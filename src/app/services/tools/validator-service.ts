@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 type Nullable<T> = T | null | undefined;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ValidatorService {
 
@@ -38,6 +38,7 @@ export class ValidatorService {
    * - Arrays: length > 0
    * - Objetos: no null
    */
+
   public required(input: Nullable<unknown>): boolean {
     if (input === null || input === undefined) return false;
 
@@ -232,12 +233,4 @@ export class ValidatorService {
     return pattern.test(s);
   }
 
-  /**
-   * =========================================================
-   * 8) Aceptacion: Para terminos y condiciones
-   * =========================================================*/
-
-  public accepted(value: boolean): boolean {
-    return value === true;
-  }
 }

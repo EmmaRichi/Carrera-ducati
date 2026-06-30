@@ -12,8 +12,9 @@ export type ErrorKey =
   | 'exact'
   | 'pattern';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorsService {
 
@@ -23,17 +24,23 @@ export class ErrorsService {
     numeric: 'Solo se aceptan valores numéricos.',
     betweenDate: 'La fecha no es válida.',
     email: 'Favor de introducir un correo con formato válido.',
-    max: 'Se excedió la longitud máxima permitida.',
-    min: 'El campo no cumple la longitud mínima requerida.',
-    exact: 'El campo debe tener exactamente el número de caracteres especificado.',
-    pattern: 'El formato no es válido.'
+    between: 'El valor no está dentro del rango permitido.',
+    max: 'El valor excede el máximo permitido.',
+    min: 'El valor es menor al mínimo permitido.',
+    exact: 'El valor no coincide con el esperado.',
+    pattern: 'El formato del dato no es válido.',
   } as const;
+
+  constructor() {
+
+  }
 
   public msg(key: 'generic' | 'required' | 'numeric' | 'betweenDate' | 'email'): string;
   public msg(key: 'between', min: number, max: number): string;
   public msg(key: 'max' | 'min' | 'exact', size: number): string;
   public msg(key: 'pattern', example?: string): string;
   public msg(key: ErrorKey, a?: number | string, b?: number): string {
+
     switch (key) {
       case 'between':
         return `El valor introducido debe estar entre ${a} y ${b}.`;
@@ -53,11 +60,8 @@ export class ErrorsService {
   // Si quiere mantener compatibilidad con su código anterior:
   public get generic(): string { return this.messages.generic; }
   public get required(): string { return this.messages.required; }
-  public get max(): string { return this.messages.max; }
-  public get min(): string { return this.messages.min; }
-  public get exact(): string { return this.messages.exact; }
-  public get pattern(): string { return this.messages.pattern; }
   public get numeric(): string { return this.messages.numeric; }
   public get betweenDate(): string { return this.messages.betweenDate; }
   public get email(): string { return this.messages.email; }
+
 }
