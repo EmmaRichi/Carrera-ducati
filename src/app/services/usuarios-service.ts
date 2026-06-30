@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ErrorsService } from './tools/errors-service';
 import { ValidatorService } from './tools/validator-service';
+import { ErrorsService } from './tools/errors-service'
 
 export interface RegistroUser {
+  user_id: string;
   first_name: string;
   last_name: string;
   email: string;
   password: string;
+  confirmar_password: string;
   telefono: string;
   ciudad: string;
+  estado: string;
+  direccion: string;
   edad: number | null;
+  curp: string;
+  rfc: string;
+  grado_estudios: 'Preparatoria' | 'Licenciatura' | 'Maestría' | 'Doctorado';
   terminos_condiciones: boolean;
 }
 
@@ -37,8 +44,8 @@ export type RegistroErrors = Partial<Record<keyof RegistroUser, string>>;
 export class UsuariosService {
 
   constructor(
-    private errors: ErrorsService,
-    private validator: ValidatorService
+    private validatorService: ValidatorService,
+    private errorService: ErrorsService,
   ) { }
 
   /* =========================================================
@@ -46,138 +53,121 @@ export class UsuariosService {
      ========================================================= */
   public esquemaUser(): RegistroUser {
     return {
+      user_id: '',
       first_name: '',
       last_name: '',
       email: '',
       password: '',
+      confirmar_password: '',
       telefono: '',
       ciudad: '',
+      estado: '',
+      direccion: '',
       edad: null,
+      curp: '',
+      rfc: '',
+      grado_estudios: 'Licenciatura',
       terminos_condiciones: false
     };
   }
 
-  /* =========================================================
-     2) VALIDACIÓN DE USUARIO MÉTODO SIN USAR EL SERVICIO DE ERRORS Y VALIDATOR
-     ========================================================= */
   public validarUsuario(user: RegistroUser): RegistroErrors {
-    const errors: RegistroErrors = {};
+    let error: any = {};
 
-    if (!user.first_name?.trim()) {
-      errors.first_name = 'El nombre es obligatorio.';
+    console.log('(Servicio-Usuarios)')
+
+    if(!this.validatorService.required(user["user_id"])) {
+      error["user_id"] = this.errorService.required;
+    }
+    else if (!this.validatorService.regex(user.user_id, /^[a-zA-Z0-9]{8}$/)) {
+      error.user_id = 'Debe ser alfanumérico de 8 caracteres.';
     }
 
-    if (!user.last_name?.trim()) {
-      errors.last_name = 'Los apellidos son obligatorios.';
+    if(!this.validatorService.required(user["first_name"])) {
+      error["first_name"] = this.errorService.required;
+    }
+    else if (!this.validatorService.wordsES(user.first_name)) {
+      error.first_name = 'Solo se permiten letras.';
     }
 
-    if (!user.email?.trim()) {
-      errors.email = 'El correo electrónico es obligatorio.';
-    } else if (!this.isValidEmail(user.email)) {
-      errors.email = 'El correo electrónico no tiene un formato válido.';
+    if(!this.validatorService.required(user["last_name"])) {
+      error["last_name"] = this.errorService.required;
+    }
+    else if (!this.validatorService.wordsES(user.last_name)) {
+      error.last_name = 'Solo se permiten letras.';
     }
 
-    if (!user.password?.trim()) {
-      errors.password = 'La contraseña es obligatoria.';
-    } else if (user.password.trim().length < 8) {
-      errors.password = 'La contraseña debe tener al menos 8 caracteres.';
+    if(!this.validatorService.required(user["email"])){
+      error["email"] = this.errorService.required;
+    }else if(!this.validatorService.maxLen(user["email"], 40)){
+      error["email"] = this.errorService.max;
+    }else if (!this.validatorService.email(user['email'])) {
+      error['email'] = this.errorService.email;
     }
 
-    if (!user.telefono?.trim()) {
-      errors.telefono = 'El teléfono es obligatorio.';
-    } else if (!this.isValidPhone(user.telefono)) {
-      errors.telefono = 'El teléfono debe contener 10 dígitos.';
+    if(!this.validatorService.required(user["confirmar_password"])){
+        error["confirmar_password"] = this.errorService.required;
+    }
+    else if (!this.validatorService.minLen(user.confirmar_password, 8)) {
+      error.confirmar_password = 'La contraseña debe tener al menos 8 caracteres.';
     }
 
-    if (!user.ciudad?.trim()) {
-      errors.ciudad = 'La ciudad es obligatoria.';
+    if(!this.validatorService.required(user["password"])){
+        error["password"] = this.errorService.required;
+    }
+    else if (!this.validatorService.minLen(user.password, 8)) {
+      error.password = 'La contraseña debe tener al menos 8 caracteres.';
     }
 
-    if (user.edad === null || user.edad === undefined) {
-      errors.edad = 'Seleccione una edad.';
+    if(!this.validatorService.required(user["telefono"])) {
+      error["telefono"] = this.errorService.required;
+    }
+    else if (!this.validatorService.phoneMX(user.telefono)) {
+      error.telefono = 'El teléfono debe contener 10 dígitos.';
     }
 
-    // Importante: esta validación la pide su UI
-    if (!user.terminos_condiciones) {
-      errors.terminos_condiciones = 'Debe aceptar los términos y condiciones.';
+    if(!this.validatorService.required(user["ciudad"])) {
+      error["ciudad"] = this.errorService.required;
     }
 
-    return errors;
+    if(!this.validatorService.required(user["estado"])) {
+      error["estado"] = this.errorService.required;
+    }
+
+    if(!this.validatorService.required(user["direccion"])) {
+      error["direccion"] = this.errorService.required;
+    }
+
+    if(!this.validatorService.required(user["edad"])) {
+      error["edad"] = this.errorService.required;
+    }
+    else if (!this.validatorService.betweenNumber(user.edad, 18, 80)) {
+      error.edad = 'La edad debe estar entre 18 y 80 años.';
+    }
+
+    if(!this.validatorService.required(user["curp"])){
+      error["curp"] = this.errorService.required;
+    }else if(!this.validatorService.minLen(user["curp"], 18)){
+      error["curp"] = this.errorService.min;
+    }
+
+    if(!this.validatorService.required(user["rfc"])){
+      error["rfc"] = this.errorService.required;
+    }else if(!this.validatorService.minLen(user["rfc"], 12)){
+      error["rfc"] = this.errorService.min;
+    }else if(!this.validatorService.maxLen(user["rfc"], 13)){
+      error["rfc"] = this.errorService.max;
+    }
+
+    if(!this.validatorService.required(user["grado_estudios"])) {
+      error["grado_estudios"] = this.errorService.required;
+    }
+
+    if(!this.validatorService.accepted(user["terminos_condiciones"])) {
+      error["terminos_condiciones"] = "Debes aceptar los terminos y condiciones";
+    }
+
+    return error;
   }
-
-  /* =========================================================
-     Helpers privados
-     ========================================================= */
-  private isValidEmail(email: string): boolean {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email.trim());
-  }
-
-  private isValidPhone(phone: string): boolean {
-    const digits = phone.replace(/\D/g, '');
-    return digits.length === 10;
-  }
-
-  /* =========================================================
-     3) VALIDACIÓN DE USUARIO MÉTODO PERO AHORA USANDO EL SERVICIO DE ERRORS Y VALIDATOR
-     ========================================================= */
-
-  public validarUsuarioConServices(user: RegistroUser): RegistroErrors {
-    const errors: RegistroErrors = {};
-
-    // --- first_name ---
-    if (!this.validator.required(user.first_name)) {
-      errors.first_name = this.errors.required;
-    } else if (!this.validator.wordsES(user.first_name)) {
-      errors.first_name = this.errors.msg('pattern', 'Juan');
-    }
-
-    // --- last_name ---
-    if (!this.validator.required(user.last_name)) {
-      errors.last_name = this.errors.required;
-    } else if (!this.validator.wordsES(user.last_name)) {
-      errors.last_name = this.errors.msg('pattern', 'Pérez López');
-    }
-
-    // --- email ---
-    if (!this.validator.required(user.email)) {
-      errors.email = this.errors.required;
-    } else if (!this.validator.email(user.email)) {
-      errors.email = this.errors.email;
-    }
-
-    // --- password ---
-    if (!this.validator.required(user.password)) {
-      errors.password = this.errors.required;
-    } else if (!this.validator.minLen(user.password, 8)) {
-      errors.password = this.errors.msg('min', 8);
-    }
-
-    // --- telefono ---
-    if (!this.validator.required(user.telefono)) {
-      errors.telefono = this.errors.required;
-    } else if (!this.validator.phoneMX(user.telefono)) {
-      errors.telefono = this.errors.msg('exact', 10);
-    }
-
-    // --- ciudad ---
-    if (!this.validator.required(user.ciudad)) {
-      errors.ciudad = this.errors.required;
-    }
-
-    // --- edad ---
-    if (!this.validator.required(user.edad)) {
-      errors.edad = this.errors.required;
-    } else if (!this.validator.betweenNumber(user.edad, 18, 99)) {
-      errors.edad = this.errors.msg('between', 18, 99);
-    }
-
-    // --- terminos_condiciones ---
-    if (!user.terminos_condiciones) {
-      errors.terminos_condiciones = this.errors.generic;
-    }
-
-    return errors;
-  }
-
 
 }

@@ -25,6 +25,16 @@
       <div class="registro-body">
         <div class="form-registro">
           <h1 class="title-login">Regístrate</h1>
+          <!--<pre>{{ errors | json }}</pre>-->
+
+          <!-- Id de Usuario -->
+          <mat-form-field class="inputs-login" appearance="outline">
+            <mat-label>Id de Usuario</mat-label>
+            <input [(ngModel)]="user.user_id" type="text" matInput placeholder="Ej: AB12CD34">
+          </mat-form-field>
+          @if (errors.user_id) {
+          <div class="invalid-feedback">{{ errors.user_id }}</div>
+          }
 
           <!-- Nombre -->
           <mat-form-field class="inputs-login" appearance="outline">
@@ -65,6 +75,18 @@
           <div class="invalid-feedback">{{ errors.password }}</div>
           }
 
+          <!-- Confirmar contraseña -->
+          <mat-form-field appearance="outline" class="inputs-login">
+            <mat-label>Confirmar contraseña</mat-label>
+            <input [(ngModel)]="user.confirmar_password" [type]="inputType_1" matInput placeholder="Ingresa nuevamente la contraseña">
+            <mat-icon matSuffix class="eye-icon" (click)="showPassword()">
+              {{ hide_1 ? 'visibility_off' : 'visibility' }}
+            </mat-icon>
+          </mat-form-field>
+          @if (errors.confirmar_password) {
+          <div class="invalid-feedback">{{ errors.confirmar_password }}</div>
+          }
+
           <!-- Teléfono -->
           <mat-form-field class="inputs-login" appearance="outline">
             <mat-label>Teléfono</mat-label>
@@ -84,6 +106,28 @@
           <div class="invalid-feedback">{{ errors.ciudad }}</div>
           }
 
+          <!-- estado -->
+          <mat-form-field appearance="outline" class="inputs-login">
+            <mat-label>Estado</mat-label>
+            <mat-select [(ngModel)]="user.estado">
+              <mat-option *ngFor="let e of estados" [value]="e.value">
+                {{ e.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          @if (errors.estado) {
+          <div class="invalid-feedback">{{ errors.estado }}</div>
+          }
+
+          <!-- direccion -->
+          <mat-form-field appearance="outline" class="inputs-login">
+            <mat-label>Dirección</mat-label>
+            <input [(ngModel)]="user.direccion" matInput>
+          </mat-form-field>
+          @if (errors.direccion) {
+          <div class="invalid-feedback">{{ errors.direccion }}</div>
+          }
+
           <!-- Edad -->
           <mat-form-field appearance="outline" class="inputs-login">
             <mat-label>Edad</mat-label>
@@ -97,6 +141,37 @@
           </mat-form-field>
           @if (errors.edad) {
           <div class="invalid-feedback">{{ errors.edad }}</div>
+          }
+
+          <!-- curp -->
+          <mat-form-field appearance="outline" class="inputs-login">
+            <mat-label>CURP</mat-label>
+            <input [(ngModel)]="user.curp" matInput>
+          </mat-form-field>
+          @if (errors.curp) {
+          <div class="invalid-feedback">{{ errors.curp }}</div>
+          }
+
+          <!-- rfc -->
+          <mat-form-field appearance="outline" class="inputs-login">
+            <mat-label>RFC</mat-label>
+            <input [(ngModel)]="user.rfc" matInput>
+          </mat-form-field>
+          @if (errors.rfc) {
+          <div class="invalid-feedback">{{ errors.rfc }}</div>
+          }
+
+          <!-- grado_estudios -->
+          <mat-form-field appearance="outline" class="inputs-login">
+            <mat-label>Grado de estudios</mat-label>
+            <mat-select [(ngModel)]="user.grado_estudios">
+              <mat-option *ngFor="let g of grados" [value]="g.value">
+                {{ g.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          @if (errors.grado_estudios) {
+          <div class="invalid-feedback">{{ errors.grado_estudios }}</div>
           }
 
           <!-- Términos -->

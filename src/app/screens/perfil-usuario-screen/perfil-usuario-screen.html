@@ -1,1 +1,65 @@
-<p>perfil-usuario-screen works!</p>
+<!-- Pantalla: Perfil de usuario -->
+<section class="bases perfil" aria-label="Perfil de usuario">
+	<mat-drawer-container class="bases__drawer-container" autosize>
+		<mat-drawer #drawer class="bases__drawer" mode="over" position="start" [opened]="drawerOpen"
+			(closedStart)="drawerOpen = false">
+			<app-left-sidebar [isLogin]="isLogin" (closeSidebar)="closeSidebar()"></app-left-sidebar>
+		</mat-drawer>
+
+		<mat-drawer-content class="bases__content">
+			<app-header-app (menuToggle)="toggleSidebar()"></app-header-app>
+
+			<main class="bases__body" role="main">
+				<section class="perfil__hero" aria-label="Encabezado de perfil">
+					<img class="perfil__avatar" src="assets/images/perfil.png" alt="Foto de perfil">
+					<h2 class="perfil__name">{{ fullName() }}</h2>
+					<p class="perfil__email">{{ user.email }}</p>
+				</section>
+
+				<section class="perfil__inner" aria-label="Contenido de perfil">
+					<div class="perfil__content">
+						<div class="perfil__row">
+							<span class="label">Teléfono</span>
+							<span class="value">{{ user.telefono || '-' }}</span>
+						</div>
+
+						<div class="perfil__row">
+							<span class="label">Ciudad, Estado</span>
+							<span class="value">{{ user.ciudad || '-' }}, {{ getEstadoLabel() }}</span>
+						</div>
+
+						<div class="perfil__row">
+							<span class="label">CURP</span>
+							<span class="value">{{ user.curp || '-' }}</span>
+						</div>
+
+						<div class="perfil__row">
+							<span class="label">RFC</span>
+							<span class="value">{{ user.rfc || '-' }}</span>
+						</div>
+
+						<div class="perfil__row">
+							<span class="label">Edad</span>
+							<span class="value">{{ user.edad || '-' }}</span>
+						</div>
+
+						<div class="perfil__row">
+							<span class="label">Grado de estudio</span>
+							<span class="value">{{ getGradoLabel() }}</span>
+						</div>
+
+						<div class="perfil__row">
+							<span class="label">Fecha de registro</span>
+							<span class="value">{{ fechaRegistro || '-' }}</span>
+						</div>
+					</div>
+				</section>
+
+				<section class="bases__footer" aria-label="Pie de página">
+					<app-footer-app></app-footer-app>
+				</section>
+			</main>
+
+		</mat-drawer-content>
+	</mat-drawer-container>
+</section>
