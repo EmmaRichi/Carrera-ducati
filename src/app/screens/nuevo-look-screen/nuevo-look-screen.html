@@ -1,1 +1,80 @@
-<p>nuevo-look-screen works!</p>
+<!-- Pantalla: look de la promoción -->
+<section class="look" aria-label="look de la promoción">
+  <!-- Drawer container (igual que Home/Instrucciones) -->
+  <mat-drawer-container class="look__drawer-container" autosize>
+    <!-- DRAWER (Sidebar) -->
+    <mat-drawer #drawer class="look__drawer" mode="over" position="start" [opened]="drawerOpen"
+      (closedStart)="drawerOpen = false">
+      <app-left-sidebar [isLogin]="isLogin" (closeSidebar)="closeSidebar()"></app-left-sidebar>
+    </mat-drawer>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <mat-drawer-content class="look__content">
+      <!-- Header (mismo output que Home/Instrucciones) -->
+      <app-header-app (menuToggle)="toggleSidebar()"></app-header-app>
+
+      <!-- Body -->
+      <main class="look__body" role="main">
+        <!-- Encabezado: imagen + título -->
+        <section class="look__hero" aria-label="Encabezado de look">
+          <img src="assets/images/header-img.png" class="look__hero-img" alt="look de la promoción" loading="eager"
+            fetchpriority="high" decoding="async">
+
+          <div class="look__title-row">
+            <span class="look__title-line" aria-hidden="true"></span>
+            <h1 class="look__title">NUEVO LOOK</h1>
+          </div>
+        </section>
+
+        <!-- Contenido: texto de las look -->
+        <section class="look__inner" aria-label="Contenido de look">
+          <!-- Bloque 1 -->
+          <article class="look__text" aria-label="Paso 1">
+            <p class="look__text-copy">
+              ¿Quieres tener una idea de cómo verías si usarás unos increíbles Carrera Ducati?
+            </p>
+          </article>
+
+          <!-- Bloque 2 -->
+          <article class="look__step" aria-label="Paso 2">
+            <img src="../../../assets/images/lentes-ducati-1.png" alt="Lentes 1"
+              class="look__step-img" loading="lazy" decoding="async">
+            <span class="look__step-text look__text--bold">CARDUC 001/S</span>
+          </article>
+
+          <!-- Bloque 3 -->
+          <article class="look__step" aria-label="Paso 3">
+            <img src="../../../assets/images/lentes-ducati-2.png" alt="Lentes 2"
+              class="look__step-img" loading="lazy" decoding="async">
+            <span class="look__step-text look__text--bold">CARDUC 002/S</span>
+          </article>
+
+          <!-- Bloque 4 -->
+          <article class="look__step" aria-label="Paso 4">
+            <img src="../../../assets/images/lentes-ducati-3.png" alt="Lentes 3"
+              class="look__step-img" loading="lazy" decoding="async">
+            <span class="look__step-text look__text--bold">CARDUC 002/S</span>
+          </article>
+        </section>
+
+        <!-- Botones decorativos encima del footer de licencia -->
+        <section class="look__decorative-buttons" aria-label="Botones decorativos">
+          <button type="button" class="look__decorative-btn">OMITIR</button>
+          <button type="button" class="look__decorative-btn look__decorative-btn--primary">USAR LENTES</button>
+        </section>
+
+        <!-- Footer de Licencia -->
+        <section class="look__footer--licencia" aria-label="Pie de página">
+          <span>Ducati Motor Holding S.p.A. Official Licensed Product</span>
+        </section>
+
+        <!-- Footer (a borde completo, como Home) -->
+        <section class="look__footer" aria-label="Pie de página">
+          <app-footer-app></app-footer-app>
+        </section>
+
+      </main>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+</section>

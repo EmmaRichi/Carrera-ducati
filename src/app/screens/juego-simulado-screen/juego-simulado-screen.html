@@ -1,1 +1,19 @@
-<p>juego-simulado-screen works!</p>
+<section class="juego" aria-label="Pantalla de juego simulado">
+  <mat-drawer-container class="juego__drawer-container" autosize>
+    <mat-drawer #drawer class="juego__drawer" mode="over" position="start" [opened]="drawerOpen"
+      (closedStart)="drawerOpen = false">
+      <app-left-sidebar [isLogin]="isLogin" (closeSidebar)="closeSidebar()"></app-left-sidebar>
+    </mat-drawer>
+
+    <mat-drawer-content class="juego__content">
+      <app-header-app class="juego__header" (menuToggle)="toggleSidebar()"></app-header-app>
+
+      <main class="juego__body" role="main">
+        <section class="juego__hero" aria-label="Juego simulado">
+          <img src="../../../assets/images/juego-moto-img.png" class="juego__hero-img" alt="Juego Moto" loading="lazy"
+            decoding="async" (click)="goJuegoTerminado()">
+        </section>
+      </main>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</section>

@@ -106,7 +106,7 @@ export class InstruccionesScreen implements OnInit {
     // Simulación breve (si después conectará API, aquí iría el servicio)
     setTimeout(() => {
       this.isLoading = false;
-      this.router.navigate(['app', 'nuevo-look']);
+      this.router.navigate(['app', 'juego-simulado']);
     }, 400);
   }
 

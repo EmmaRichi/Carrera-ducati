@@ -1,0 +1,338 @@
+/* =========================================================
+   look - BASE (mobile-first)
+   ========================================================= */
+
+.look {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+/* Drawer container */
+.look__drawer-container {
+  height: 100vh;
+  background: #ffffff;
+}
+
+/* Drawer */
+.look__drawer {
+  width: 85vw;
+  max-width: 340px;
+  border-right: 0;
+}
+
+/* Main content */
+.look__content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+/* Scroll lives here */
+.look__body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #ffffff;
+
+  /* Important: ensure blocks stack naturally */
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.look__hero {
+  border-top: 1px solid rgba(122, 122, 122, 0.12);
+  width: 100%;
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Image */
+.look__hero-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+}
+
+/* Title row */
+.look__title-row {
+  width: 100%;
+  max-width: 980px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.look__title-line {
+  width: 4px;
+  height: 60px;
+  background: #cd0000;
+  flex: 0 0 auto;
+}
+
+.look__title {
+  margin: 0;
+  font-family: Avenir-Bold;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #000;
+}
+
+/* =========================================================
+   INNER (centered content like Home)
+   ========================================================= */
+.look__inner {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+
+  /* Keep the safe margins from Home */
+  padding: 18px 15px 26px 15px;
+
+  /* Ensure content is visually centered */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================================
+   STEPS
+   - Center all blocks on desktop and mobile
+   ========================================================= */
+.look__step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* KEY: center the whole step content */
+  gap: 10px;
+  padding: 18px 0;
+}
+
+/* Step title image */
+.look__step-img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+}
+
+/* Text */
+.look__text {
+  width: 100%;
+  max-width: 720px;          /* improves reading on desktop */
+  text-align: left;         /* matches the real centered look */
+  font-family: Avenir;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+}
+
+.look__text--bold {
+  font-family: Avenir-Bold;
+}
+
+/* Row with logos (step 1) */
+.look__step-row {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;     /* center row */
+  gap: 12px;
+  flex-wrap: wrap;             /* prevents overflow on small screens */
+}
+
+.look__logos {
+  width: auto;
+  height: 28px;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+/* =========================================================
+   CTA Moto (step 4)
+   ========================================================= */
+.look__moto-btn {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  width: fit-content;
+
+  &:focus-visible {
+    outline: 2px solid rgba(205, 0, 0, 0.45);
+    outline-offset: 6px;
+    border-radius: 10px;
+  }
+}
+
+.look__moto-img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  display: block;
+}
+
+/* =========================================================
+   LEGAL
+   ========================================================= */
+.look__legal {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 18px 0 0 0;
+}
+
+.look__legal-text {
+  width: 100%;
+  max-width: 720px;
+  margin: 0;
+  text-align: left;
+  font-family: Avenir;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+}
+
+/* =========================================================
+   FOOTER (full-bleed like Home)
+   - Works even if footer sits inside .look__inner
+   ========================================================= */
+.look__footer {
+  width: 100vw;                 /* force viewport width */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Optional: keep it visually separated like Home */
+.look__decorative-buttons {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto 16px auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.look__decorative-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 16px;
+  border: 1px solid #CD0000;
+  border-radius: 0;
+  background: transparent;
+  color: #CD0000;
+  font-family: Avenir;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-color: transparent;
+  cursor: default;
+}
+
+.look__decorative-btn--primary {
+  background: #CD0000;
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.look__footer--licencia {
+  margin-top: 80px;
+
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #CD0000;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 15px;
+  font-family: Avenir;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.4px;
+}
+
+/* =========================================================
+   RESPONSIVE: tablet+
+   ========================================================= */
+@media (min-width: 768px) {
+  .look__drawer {
+    width: 360px;
+  }
+
+  .look__hero {
+    padding: 18px 0;
+  }
+
+  .look__title {
+    font-size: 22px;
+  }
+
+  .look__step {
+    padding: 22px 0;
+  }
+
+  .look__step-img {
+    max-width: 360px;
+  }
+
+  .look__logos {
+    height: 32px;
+    max-width: 200px;
+  }
+
+  .look__moto-img {
+    max-width: 420px;
+  }
+
+  .look__legal-text {
+    font-size: 15px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: desktop
+   ========================================================= */
+@media (min-width: 992px) {
+  .look__inner {
+    max-width: 1040px;
+  }
+
+  .look__title-row {
+    max-width: 1040px;
+  }
+
+  .look__title {
+    font-size: 24px;
+  }
+
+  .look__hero-img {
+    max-width: 520px;
+  }
+
+  .look__step-img {
+    max-width: 420px;
+  }
+
+  .look__moto-img {
+    max-width: 520px;
+  }
+
+  .look__logos {
+    height: 34px;
+  }
+}

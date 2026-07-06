@@ -1,1 +1,65 @@
-<p>juego-terminado-screen works!</p>
+<!-- Pantalla: juego de la promoción -->
+<section class="juego" aria-label="juego de la promoción">
+  <!-- Drawer container (igual que Home/juego) -->
+  <mat-drawer-container class="juego__drawer-container" autosize>
+    <!-- DRAWER (Sidebar) -->
+    <mat-drawer #drawer class="juego__drawer" mode="over" position="start" [opened]="drawerOpen"
+      (closedStart)="drawerOpen = false">
+      <app-left-sidebar [isLogin]="isLogin" (closeSidebar)="closeSidebar()"></app-left-sidebar>
+    </mat-drawer>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <mat-drawer-content class="juego__content">
+      <!-- Header (mismo output que Home/juego) -->
+      <app-header-app (menuToggle)="toggleSidebar()"></app-header-app>
+
+      <!-- Body -->
+      <main class="juego__body" role="main">
+        <!-- Encabezado: imagen + título -->
+        <section class="juego__hero" aria-label="Encabezado de juego">
+
+          <div class="juego__title-row">
+            <span class="juego__title-line" aria-hidden="true"></span>
+            <h1 class="juego__title">¡EXELENTE CARRERA!</h1>
+          </div>
+        </section>
+
+        <!-- Contenido: texto de la pantalla final -->
+        <section class="juego__inner" aria-label="Contenido de juego final">
+          <div class="juego__result">
+            <div class="juego__red-bar" aria-hidden="true"></div>
+
+            <div class="juego__result-copy">
+              <p class="juego__result-label">OBTUVISTE</p>
+              <p class="juego__result-score">1400</p>
+              <p class="juego__result-subtitle">puntos</p>
+            </div>
+
+            <p class="juego__result-message">
+              Gracias por participar, acumula más puntos y gana una increíble <strong>Ducati Scrambler</strong>.
+            </p>
+
+            <!-- Botón inicio -->
+            <div class="acciones">
+              <button mat-flat-button type="button" class="btn-jugar" type="button" (click)="goInicio()"
+                [disabled]="isLoading">
+                @if (!isLoading) {
+                  <span class="text-btn">IR AL INICIO</span>
+                } @else {
+                  <span class="text-btn">Procesando…</span>
+                }
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer (a borde completo, como Home) -->
+        <section class="juego__footer" aria-label="Pie de página">
+          <app-footer-app></app-footer-app>
+        </section>
+
+      </main>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+</section>

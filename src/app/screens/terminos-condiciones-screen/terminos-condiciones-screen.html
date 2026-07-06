@@ -1,1 +1,76 @@
-<p>terminos-condiciones-screen works!</p>
+<!-- Pantalla: terminos de la promoción -->
+<section class="terminos" aria-label="terminos de la promoción">
+  <!-- Drawer container (igual que Home/terminos) -->
+  <mat-drawer-container class="terminos__drawer-container" autosize>
+    <!-- DRAWER (Sidebar) -->
+    <mat-drawer #drawer class="terminos__drawer" mode="over" position="start" [opened]="drawerOpen"
+      (closedStart)="drawerOpen = false">
+      <app-left-sidebar [isLogin]="isLogin" (closeSidebar)="closeSidebar()"></app-left-sidebar>
+    </mat-drawer>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <mat-drawer-content class="terminos__content">
+      <!-- Header (mismo output que Home/terminos) -->
+      <app-header-app (menuToggle)="toggleSidebar()"></app-header-app>
+
+      <!-- Body -->
+      <main class="terminos__body" role="main">
+        <!-- Encabezado: imagen + título -->
+        <section class="terminos__hero" aria-label="Encabezado de terminos">
+
+          <div class="terminos__title-row">
+            <span class="terminos__title-line" aria-hidden="true"></span>
+            <h1 class="terminos__title">TERMINOS Y CONDICIONES</h1>
+          </div>
+        </section>
+
+        <!-- Contenido: texto de las terminos -->
+        <section class="terminos__inner" aria-label="Contenido de terminos">
+
+          <article class="terminos__legal" aria-label="Paso 1">
+            <p class="terminos__legal-text">
+              At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est. <br><br>
+
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+              sed diam nonumy eirmod tempor invidunt ut labore et
+              dolore magna aliquyam erat, sed diam voluptua. At vero
+              eos et accusam et justo duo dolores et ea rebum. Stet
+              clita kasd gubergren, no sea takimata sanctus est Lorem
+              ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+              consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+              invidunt ut labore et dolore magna aliquyam erat, sed diam
+              voluptua. <br><br>
+
+              At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est
+              Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+              consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut. <br><br>
+
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+              sed diam nonumy eirmod tempor invidunt ut labore et dolore
+              magna aliquyam erat, sed diam voluptua. At vero eos et
+              accusam et justo duo dolores et ea rebum. <br><br>
+
+              Stet clita kasd gubergren, no sea takimata sanctus est
+              Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+              consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua.
+            </p>
+          </article>
+
+        </section>
+
+
+        <!-- Footer (a borde completo, como Home) -->
+        <section class="terminos__footer" aria-label="Pie de página">
+          <app-footer-app></app-footer-app>
+        </section>
+
+      </main>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+</section>

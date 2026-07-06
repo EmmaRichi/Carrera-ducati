@@ -1,0 +1,347 @@
+/* =========================================================
+   juego - BASE (mobile-first)
+   ========================================================= */
+
+.juego {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+/* Drawer container */
+.juego__drawer-container {
+  height: 100vh;
+  background: #ffffff;
+}
+
+/* Drawer */
+.juego__drawer {
+  width: 85vw;
+  max-width: 340px;
+  border-right: 0;
+}
+
+/* Main content */
+.juego__content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+/* Scroll lives here */
+.juego__body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #ffffff;
+
+  /* Important: ensure blocks stack naturally */
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.juego__hero {
+  border-top: 1px solid rgba(122, 122, 122, 0.12);
+  width: 100%;
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+/* Image */
+.juego__hero-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+}
+
+.juego__result {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.juego__red-bar {
+  width: 90px;
+  height: 160px;
+  background: #CD0000 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+.juego__result-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.juego__result-label {
+  margin: 0;
+  font-family: Avenir-Bold;
+  font-size: 14px;
+  letter-spacing: 1.8px;
+  color: #CD0000;
+  text-transform: uppercase;
+}
+
+.juego__result-score {
+  margin: 0;
+  font-family: Avenir-Black, sans-serif;
+  font-size: 64px;
+  line-height: 1;
+  color: #000;
+}
+
+.juego__result-subtitle {
+  margin: 0;
+  font-family: Avenir;
+  font-size: 18px;
+  color: #000;
+}
+
+.juego__result-message {
+  margin: 0;
+  font-family: Avenir;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+  max-width: 320px;
+}
+
+/* Title row */
+.juego__title-row {
+  width: 100%;
+  max-width: 980px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.juego__title-line {
+  width: 4px;
+  height: 60px;
+  background: #cd0000;
+  flex: 0 0 auto;
+}
+
+.juego__title {
+  margin: 0;
+  font-family: Avenir-Bold;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #000;
+  font-weight: 700;
+}
+
+/* =========================================================
+   INNER (centered content like Home)
+   ========================================================= */
+.juego__inner {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+
+  /* Keep the safe margins from Home */
+  padding: 18px 15px 26px 15px;
+
+  /* Ensure content is visually centered */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================================
+   STEPS
+   - Center all blocks on desktop and mobile
+   ========================================================= */
+.juego__step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* KEY: center the whole step content */
+  gap: 10px;
+  padding: 18px 0;
+}
+
+/* Score table rows */
+.juego__score-row {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0 0;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.juego__score-row .juego__legal-text {
+  width: 50%;
+  max-width: none;
+  margin: 0;
+}
+
+/* =========================================================
+   LEGAL
+   ========================================================= */
+.juego__legal {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 18px 0 0 0;
+}
+
+.juego__legal-titulo {
+  width: 100%;
+  max-width: 720px;
+  margin: 0;
+  text-align: left;
+  font-family: Avenir-Bold;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+  font-weight: 700;
+}
+
+.juego__legal-text {
+  width: 100%;
+  max-width: 720px;
+  margin: 0;
+  text-align: left;
+  font-family: Avenir;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+}
+
+.juego__legal-text-left {
+  text-align: left;
+}
+
+.juego__legal-text-right {
+  text-align: right;
+}
+
+/* =========================================================
+   FOOTER (full-bleed like Home)
+   - Works even if footer sits inside .juego__inner
+   ========================================================= */
+.juego__footer {
+  width: 100vw;                 /* force viewport width */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Optional: keep it visually separated like Home */
+.juego__footer {
+  margin-top: 16px;
+}
+
+/* =========================================================
+   RESPONSIVE: tablet+
+   ========================================================= */
+@media (min-width: 768px) {
+  .juego__drawer {
+    width: 360px;
+  }
+
+  .juego__hero {
+    padding: 18px 0;
+  }
+
+  .juego__title {
+    font-size: 22px;
+  }
+
+  .juego__step {
+    padding: 22px 0;
+  }
+
+  .juego__legal-text {
+    font-size: 15px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: desktop
+   ========================================================= */
+@media (min-width: 992px) {
+  .juego__inner {
+    max-width: 1040px;
+  }
+
+  .juego__title-row {
+    max-width: 1040px;
+  }
+
+  .juego__title {
+    font-size: 24px;
+  }
+
+  .juego__hero-img {
+    max-width: 520px;
+  }
+
+  .juego__step-img {
+    max-width: 420px;
+  }
+
+  .juego__moto-img {
+    max-width: 520px;
+  }
+
+  .juego__logos {
+    height: 34px;
+  }
+}
+
+/* acciones (botón registrar) */
+.acciones {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 6px 0;
+}
+
+.btn-jugar {
+  width: 188px;
+  height: 40px;
+  border-radius: 0;
+}
+
+
+/* Botón material: mantener su color */
+:host ::ng-deep button.btn-jugar.mat-mdc-unelevated-button {
+  background-color: #CD0000 !important;
+  color: #FFFFFF !important;
+
+  /* Tokens MDC (por compatibilidad) */
+  --mdc-filled-button-container-color: #CD0000;
+  --mdc-filled-button-label-text-color: #FFFFFF;
+  --mat-filled-button-state-layer-color: #FFFFFF; /* hover/focus layer */
+  --mat-filled-button-ripple-color: rgba(255, 255, 255, 0.2);
+
+  min-width: 188px;
+  height: 40px;
+  border-radius: 0 !important;
+
+  font-family: Avenir, sans-serif !important;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
